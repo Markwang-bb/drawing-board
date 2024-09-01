@@ -16,8 +16,8 @@ canvas {
     align-items: center;
 }
 
-.eraserToggle { 
-    margin-right: 15px;
+.eraserToggle, .eraserSize { 
+    margin-right: 10px;
     padding: 10px 15px;
     font-size: 16px;
     color: #fff;
@@ -28,16 +28,31 @@ canvas {
     transition: background-color 0.3s, transform 0.1s;
 }
 
-.eraserToggle:hover {
+.eraserToggle:hover, .eraserSize:hover {
     background-color: #45a049;
 }
 
-.eraserToggle:active {
+.eraserToggle:active, .eraserSize:active {
     transform: scale(0.98);
 }
 
 .eraserToggle.active {
     background-color: #f44336;
+}
+
+.eraserSizes {
+    display: flex;
+    margin-right: 10px;
+}
+
+.eraserSize {
+    margin-right: 5px;
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+.eraserSize.active {
+    background-color: #2196F3;
 }
 
 #colorPicker {
@@ -47,4 +62,35 @@ canvas {
     border-radius: 50%;
     overflow: hidden;
     cursor: pointer;
+}
+
+/* ... 之前的样式保持不变 ... */
+
+.brushStyles {
+    display: flex;
+    margin-right: 10px;
+}
+
+.brushStyle {
+    margin-right: 5px;
+    padding: 5px 10px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+.brushStyle:hover {
+    background-color: #45a049;
+}
+
+.brushStyle:active {
+    transform: scale(0.98);
+}
+
+.brushStyle.active {
+    background-color: #2196F3;
 }

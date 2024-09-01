@@ -3,13 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>简化圆点画板</title>
+    <title>优化画板</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <canvas id="canvas"></canvas>
     <div id="controls">
         <button class="eraserToggle">切换橡皮擦</button>
+        <div class="eraserSizes" style="display: none;">
+            <button class="eraserSize" data-size="small">小</button>
+            <button class="eraserSize" data-size="medium">中</button>
+            <button class="eraserSize" data-size="large">大</button>
+        </div>
+        <div class="brushStyles">
+            <button class="brushStyle active" data-style="normal">普通</button>
+            <button class="brushStyle" data-style="rough">粗糙</button>
+            <button class="brushStyle" data-style="dashed">虚线</button>
+        </div>
+        <div class="brushStyles">
+          <button class="brushStyle" data-style="watercolor">水彩</button>
+          <button class="brushStyle" data-style="crayon">蜡笔</button>
+      </div>
         <input type="color" id="colorPicker" value="#000000">
     </div>
     <script src="main.js"></script>
