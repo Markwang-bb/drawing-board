@@ -3,12 +3,13 @@
   "version": "0.0.1",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npx parcel index.html --no-cache"
   },
   "keywords": [],
   "author": "jackW",
-  "license": "ISC",
-  "description": "",
+  "license": "MIT",
+  "description": "这是一个功能丰富的在线画板应用,支持多种绘画风格和工具",
   "devDependencies": {
     "parcel": "^2.12.0"
   }
