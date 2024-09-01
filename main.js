@@ -112,10 +112,14 @@ function endPosition() {
 }
 
 function toggleEraser() {
-    erasing = !erasing;
-    eraserToggle.textContent = erasing ? '切换画笔' : '切换橡皮擦';
-    eraserToggle.classList.toggle('active', erasing);
-    eraserSizes.style.display = erasing ? 'flex' : 'none';
+  erasing = !erasing;
+  eraserToggle.classList.toggle('active', erasing);
+  eraserSizes.style.display = erasing ? 'flex' : 'none';
+  
+  // 更新图标
+  const icon = eraserToggle.querySelector('i');
+  icon.classList.toggle('ri-toggle-line', !erasing);
+  icon.classList.toggle('ri-toggle-fill', erasing);
 }
 
 function setEraserSize(size) {

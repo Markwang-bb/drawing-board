@@ -16,7 +16,7 @@ canvas {
     align-items: center;
 }
 
-.eraserToggle, .eraserSize { 
+.eraserToggle, .eraserSize, .brushStyle { 
     margin-right: 10px;
     padding: 10px 15px;
     font-size: 16px;
@@ -28,11 +28,22 @@ canvas {
     transition: background-color 0.3s, transform 0.1s;
 }
 
-.eraserToggle:hover, .eraserSize:hover {
+.eraserToggle { 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.eraserToggle i {
+    margin-right: 5px;
+    font-size: 20px;
+}
+
+.eraserToggle:hover, .eraserSize:hover, .brushStyle:hover {
     background-color: #45a049;
 }
 
-.eraserToggle:active, .eraserSize:active {
+.eraserToggle:active, .eraserSize:active, .brushStyle:active {
     transform: scale(0.98);
 }
 
@@ -40,18 +51,18 @@ canvas {
     background-color: #f44336;
 }
 
-.eraserSizes {
+.eraserSizes, .brushStyles {
     display: flex;
     margin-right: 10px;
 }
 
-.eraserSize {
+.eraserSize, .brushStyle {
     margin-right: 5px;
     padding: 5px 10px;
     font-size: 14px;
 }
 
-.eraserSize.active {
+.brushStyle.active {
     background-color: #2196F3;
 }
 
@@ -64,33 +75,22 @@ canvas {
     cursor: pointer;
 }
 
-/* ... 之前的样式保持不变 ... */
-
-.brushStyles {
-    display: flex;
-    margin-right: 10px;
-}
-
-.brushStyle {
+.icon {
     margin-right: 5px;
-    padding: 5px 10px;
-    font-size: 14px;
-    color: #fff;
-    background-color: #4CAF50;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.1s;
+    font-size: 18px;
 }
 
-.brushStyle:hover {
-    background-color: #45a049;
-}
+/* 响应式设计 */
+@media (max-width: 600px) {
+    #controls {
+        flex-wrap: wrap;
+    }
 
-.brushStyle:active {
-    transform: scale(0.98);
-}
+    .eraserToggle, .eraserSize, .brushStyle {
+        margin-bottom: 10px;
+    }
 
-.brushStyle.active {
-    background-color: #2196F3;
+    .eraserSizes, .brushStyles {
+        flex-wrap: wrap;
+    }
 }

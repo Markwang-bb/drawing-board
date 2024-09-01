@@ -5,11 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>优化画板</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
 </head>
 <body>
     <canvas id="canvas"></canvas>
     <div id="controls">
-        <button class="eraserToggle">切换橡皮擦</button>
+        <button class="eraserToggle">
+          <i class="ri-toggle-line"></i>
+          橡皮擦
+        </button>
         <div class="eraserSizes" style="display: none;">
             <button class="eraserSize" data-size="small">小</button>
             <button class="eraserSize" data-size="medium">中</button>
@@ -19,11 +23,9 @@
             <button class="brushStyle active" data-style="normal">普通</button>
             <button class="brushStyle" data-style="rough">粗糙</button>
             <button class="brushStyle" data-style="dashed">虚线</button>
+            <button class="brushStyle" data-style="watercolor"><span class="icon">🎨</span> 水彩</button>
+            <button class="brushStyle" data-style="crayon"><span class="icon">✏️</span> 蜡笔</button>
         </div>
-        <div class="brushStyles">
-          <button class="brushStyle" data-style="watercolor">水彩</button>
-          <button class="brushStyle" data-style="crayon">蜡笔</button>
-      </div>
         <input type="color" id="colorPicker" value="#000000">
     </div>
     <script src="main.js"></script>
