@@ -1,29 +1,43 @@
 let canvas = document.getElementById("canvas");
-        canvas.width = document.documentElement.clientWidth
-        canvas.height = document.documentElement.clientHeight
-        let ctx = canvas.getContext("2d");
+let ctx = canvas.getContext("2d");
+let eraserToggle = document.querySelector(".eraserToggle");
+let colorPicker = document.getElementById("colorPicker");
 
-        let painting = false
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
+let painting = false;
+let erasing = false;
 
-        ctx.fillStyle = "black";
-        ctx.strokeStyle = 'none'
+function draw(e) {
+    if (!painting) return;
+    
+    let x = e.clientX || e.touches[0].clientX;
+    let y = e.clientY || e.touches[0].clientY;
 
-        canvas.onmousedown = () => {
-            painting = true
-        }
+    ctx.beginPath();
+    ctx.arc(x, y, erasing ? 20 : 10, 0, 2 * Math.PI);
+    ctx.fillStyle = erasing ? 'white' : colorPicker.value;
+    ctx.fill();
+}
 
-        canvas.onmousemove = (e) => {
-            if (painting === true) {
-                ctx.beginPath();
-                ctx.arc(e.clientX, e.clientY, 10, 0, 2 * Math.PI);
-                ctx.stroke();
-                ctx.fill();
-            } else {
-                console.log('什么都不做')
-            }
-        }
+function toggleEraser() {
+    erasing = !erasing;
+    eraserToggle.textContent = erasing ? '切换画笔' : '切换橡皮擦';
+    eraserToggle.classList.toggle('active', erasing);
+}
 
-        canvas.onmouseup = () => {
-            painting = false
-        }
+canvas.onmousedown = canvas.ontouchstart = () => painting = true;
+canvas.onmouseup = canvas.onmouseout = canvas.ontouchend = () => painting = false;
+canvas.onmousemove = canvas.ontouchmove = draw;
+
+eraserToggle.onclick = toggleEraser;
+window.onresize = () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+};
+
+canvas.ontouchmove = (e) => {
+    e.preventDefault();
+    draw(e.touches[0]);
+};

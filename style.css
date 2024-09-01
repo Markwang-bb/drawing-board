@@ -1,9 +1,50 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+body { 
+    margin: 0; 
+    overflow: hidden; 
+    font-family: Arial, sans-serif;
 }
 
-#canvas {
-  display: block;
+canvas { 
+    display: block; 
+}
+
+#controls { 
+    position: absolute; 
+    top: 20px; 
+    left: 20px; 
+    display: flex;
+    align-items: center;
+}
+
+.eraserToggle { 
+    margin-right: 15px;
+    padding: 10px 15px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+.eraserToggle:hover {
+    background-color: #45a049;
+}
+
+.eraserToggle:active {
+    transform: scale(0.98);
+}
+
+.eraserToggle.active {
+    background-color: #f44336;
+}
+
+#colorPicker {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
 }
