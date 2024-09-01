@@ -8,6 +8,8 @@ canvas.height = window.innerHeight;
 
 let painting = false;
 let erasing = false;
+let lastX = 0;
+let lastY = 0;
 
 function draw(e) {
     if (!painting) return;
@@ -16,9 +18,23 @@ function draw(e) {
     let y = e.clientY || e.touches[0].clientY;
 
     ctx.beginPath();
-    ctx.arc(x, y, erasing ? 20 : 10, 0, 2 * Math.PI);
-    ctx.fillStyle = erasing ? 'white' : colorPicker.value;
-    ctx.fill();
+    ctx.moveTo(lastX, lastY);
+    ctx.lineTo(x, y);
+    ctx.lineWidth = erasing ? 40 : 20;
+    ctx.lineCap = 'round';
+    ctx.strokeStyle = erasing ? 'white' : colorPicker.value;
+    ctx.stroke();
+
+    [lastX, lastY] = [x, y];
+}
+
+function startPosition(e) {
+    painting = true;
+    [lastX, lastY] = [e.clientX || e.touches[0].clientX, e.clientY || e.touches[0].clientY];
+}
+
+function endPosition() {
+    painting = false;
 }
 
 function toggleEraser() {
@@ -27,17 +43,25 @@ function toggleEraser() {
     eraserToggle.classList.toggle('active', erasing);
 }
 
-canvas.onmousedown = canvas.ontouchstart = () => painting = true;
-canvas.onmouseup = canvas.onmouseout = canvas.ontouchend = () => painting = false;
-canvas.onmousemove = canvas.ontouchmove = draw;
+canvas.addEventListener('mousedown', startPosition);
+canvas.addEventListener('mouseup', endPosition);
+canvas.addEventListener('mouseout', endPosition);
+canvas.addEventListener('mousemove', draw);
 
-eraserToggle.onclick = toggleEraser;
-window.onresize = () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-};
-
-canvas.ontouchmove = (e) => {
+canvas.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    startPosition(e.touches[0]);
+});
+canvas.addEventListener('touchend', endPosition);
+canvas.addEventListener('touchcancel', endPosition);
+canvas.addEventListener('touchmove', (e) => {
     e.preventDefault();
     draw(e.touches[0]);
-};
+});
+
+eraserToggle.onclick = toggleEraser;
+
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
