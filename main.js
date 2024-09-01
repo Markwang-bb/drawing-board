@@ -4,6 +4,7 @@ let eraserToggle = document.querySelector(".eraserToggle");
 let eraserSizes = document.querySelector(".eraserSizes");
 let eraserSizeButtons = document.querySelectorAll(".eraserSize");
 let brushStyleButtons = document.querySelectorAll(".brushStyle");
+let brushStyles = document.querySelector(".brushStyles");
 let colorPicker = document.getElementById("colorPicker");
 
 canvas.width = window.innerWidth;
@@ -115,6 +116,7 @@ function toggleEraser() {
   erasing = !erasing;
   eraserToggle.classList.toggle('active', erasing);
   eraserSizes.style.display = erasing ? 'flex' : 'none';
+  brushStyles.style.display = erasing ? 'none' : 'flex';
   
   // 更新图标
   const icon = eraserToggle.querySelector('i');
