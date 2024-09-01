@@ -2,6 +2,7 @@ body {
     margin: 0; 
     overflow: hidden; 
     font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
 }
 
 canvas { 
@@ -14,18 +15,33 @@ canvas {
     left: 20px; 
     display: flex;
     align-items: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.eraserToggle, .eraserSize, .brushStyle { 
+#controls > button,
+#controls > div > button { 
     margin-right: 10px;
-    padding: 10px 15px;
-    font-size: 16px;
-    color: #fff;
-    background-color: #4CAF50;
-    border: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    color: #333;
+    background: none;
+    border: 1px solid #ccc;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.1s;
+    transition: all 0.3s ease;
+}
+
+#controls > button:hover,
+#controls > div > button:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+#controls > button:active,
+#controls > div > button:active {
+    transform: scale(0.98);
 }
 
 .eraserToggle { 
@@ -34,21 +50,15 @@ canvas {
     justify-content: center;
 }
 
-.eraserToggle i {
+.eraserToggle > i {
     margin-right: 5px;
-    font-size: 20px;
-}
-
-.eraserToggle:hover, .eraserSize:hover, .brushStyle:hover {
-    background-color: #45a049;
-}
-
-.eraserToggle:active, .eraserSize:active, .brushStyle:active {
-    transform: scale(0.98);
+    font-size: 18px;
 }
 
 .eraserToggle.active {
-    background-color: #f44336;
+    background-color: rgba(244, 67, 54, 0.1);
+    border-color: #f44336;
+    color: #f44336;
 }
 
 .eraserSizes, .brushStyles {
@@ -56,28 +66,32 @@ canvas {
     margin-right: 10px;
 }
 
-.eraserSize, .brushStyle {
+.eraserSizes > button,
+.brushStyles > button {
     margin-right: 5px;
-    padding: 5px 10px;
-    font-size: 14px;
+    padding: 6px 10px;
+    font-size: 12px;
 }
 
-.brushStyle.active {
-    background-color: #2196F3;
+.brushStyles > button.active {
+    background-color: rgba(33, 150, 243, 0.1);
+    border-color: #2196F3;
+    color: #2196F3;
 }
 
 #colorPicker {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     border: none;
     border-radius: 50%;
     overflow: hidden;
     cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .icon {
     margin-right: 5px;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 /* 响应式设计 */
@@ -86,7 +100,8 @@ canvas {
         flex-wrap: wrap;
     }
 
-    .eraserToggle, .eraserSize, .brushStyle {
+    #controls > button,
+    #controls > div > button {
         margin-bottom: 10px;
     }
 
